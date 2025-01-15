@@ -1,36 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkdownBook</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title></title>
+    <link rel="icon" href="" type="image/x-icon" id="favicon" />
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Prism JS: "prism-tomorrow" theme, plus toolbar + copy. 
+         (No line-numbers plugin)
+    -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"
+      defer
+    ></script>
+
+    <!-- IBM Plex Mono for code blocks -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Custom styles -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/markdown-custom.css" />
+  </head>
+
+  <body>
     <div class="navbar-wrapper">
-        <nav class="navbar">
-            <a href="#" class="navbar-brand">
-                <img src="logo.png" alt="Logo" class="logo" id="brand-logo">
-                <span class="brand-title" id="brand-title"></span>
-            </a>
-            <div class="navbar-actions">
-                <div class="search-container">
-                    <i class="fa-solid fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Search docs...">
-                </div>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <i class="fa-solid fa-sun"></i>
-                </button>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="#" class="navbar-brand">
+          <img src="#" alt="Logo" class="logo" id="brand-logo" />
+          <span class="brand-title" id="brand-title"></span>
+        </a>
+        <div class="navbar-actions">
+          <div class="search-container">
+            <i class="fa-solid fa-search search-icon"></i>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search docs..."
+            />
+          </div>
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <i class="fa-solid fa-sun"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="sidebar">
+        <div class="mobile-search">
+          <div class="search-container">
+            <i class="fa-solid fa-search search-icon"></i>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search docs..."
+            />
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <div class="table-of-contents" id="toc">
+            <!-- TOC will be dynamically populated -->
+          </div>
+        </div>
+        <div class="powered-by">
+          <a href="https://mkbook.dev" target="_blank" rel="noopener noreferrer"
+            >Powered by MkBook</a
+          >
+        </div>
+      </div>
+      <main class="main-content">
+        <div class="markdown-content" id="markdown-content">
+          <!-- Markdown content will be rendered here -->
+        </div>
+      </main>
+      <div class="page-toc-sidebar">
+        <div class="page-toc-content">
+          <h3 class="page-toc-title">On This Page</h3>
+          <div class="page-table-of-contents" id="page-toc">
+            <!-- Page TOC will be dynamically populated -->
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scripts -->
-    <script src="config.js"></script>
-    <script src="main.js"></script>
-</body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.6/marked.min.js"
+      integrity="sha512-rvRITpPeEKe4hV9M8XntuXX6nuohzqdR5O3W6nhjTLwkrx0ZgBQuaK4fv5DdOWzs2IaXsGt5h0+nyp9pEuoTXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="JS/config.js"></script>
+    <script src="JS/main.js"></script>
+  </body>
 </html>

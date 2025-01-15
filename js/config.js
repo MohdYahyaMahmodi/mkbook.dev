@@ -2,37 +2,35 @@
 const MarkdownBookConfig = {
   // Branding
   logo: {
-      path: 'logo.png',
-      altText: 'Documentation Logo'
+      path: 'logo/logo.png',
+      altText: 'Documentation Logo',
+      useFavicon: true
   },
-  title: 'Talkomatic Documentation',
+  title: {
+      website: 'Website - Documentation', // Title that appears in browser tab
+      navbar: 'Documentation Title' // Title that appears in the navbar
+  },
   
   // Search
   search: {
       placeholder: 'Search docs...',
-      enabled: true
+      enabled: false
   },
 
   // Theme Settings
   theme: {
-      // Default theme (light or dark)
       default: 'light',
-      
-      // Enable/disable theme toggle
       toggleEnabled: true
   },
 
   // Content Settings
   content: {
-      // Path to your markdown file
-      markdownPath: 'content/documentation.md',
-      
-      // Default page to show
-      defaultPage: 'introduction'
+      basePath: '/book',
+      tocPath: 'book/toc.md',
+      defaultPage: 'welcome.md'
   }
 };
 
-// Export the configuration
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = MarkdownBookConfig;
 }

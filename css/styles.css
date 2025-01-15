@@ -1,0 +1,873 @@
+/* MarkdownBook Styles */
+
+/* ===== CUSTOMIZABLE VARIABLES ===== */
+/* ========== CORE CSS VARIABLES ========== */
+:root {
+  /* Layout */
+  --mb-max-width: 1650px;
+  --mb-navbar-height: 60px;
+  
+  /* Colors - Light Theme */
+  --mb-primary-color: #3b82f6;
+  --mb-background-light: #ffffff;
+  --mb-text-light: #000000;
+  --mb-border-light: #e5e7eb;
+  --mb-search-bg-light: #f8fafc;
+  --mb-search-border-light: #e2e8f0;
+  --mb-icon-light: #94a3b8;
+  --mb-powered-by-light-hover : #000000;
+  --mb-powered-by-light-text-hover : #f8fafc;
+  --mb-code-bg-light: #424242; /* Customize code block bg for light theme */
+  
+  /* Colors - Dark Theme */
+  --mb-background-dark: #1a1a1a;
+  --mb-text-dark: #ffffff;
+  --mb-border-dark: #2d2d2d;
+  --mb-search-bg-dark: #2d2d2d;
+  --mb-search-border-dark: #3d3d3d;
+  --mb-powered-by-dark-hover : #f8fafc;
+  --mb-powered-by-dark-text-hover : #000;
+  --mb-code-bg-dark: #2f2f2f; /* Customize code block bg for dark theme */
+
+  /* Shadows */
+  --mb-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --mb-search-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --mb-font-family: 'Inter', sans-serif;
+  --mb-title-size: 18px;
+  --mb-text-size: 0.875rem;
+
+  /* Light theme scrollbar colors */
+  --scrollbar-thumb-light: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover-light: rgba(0, 0, 0, 0.3);
+  --scrollbar-track-light: rgba(0, 0, 0, 0.05);
+
+  /* Dark theme scrollbar colors */
+  --scrollbar-thumb-dark: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover-dark: rgba(255, 255, 255, 0.3);
+  --scrollbar-track-dark: rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar background now set to var(--mb-background-light)/dark */
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background-color: var(--mb-background-light); /* Force background */
+  border-bottom: 1px solid var(--mb-border-light); /* Light theme border */
+}
+
+.dark-theme .navbar-wrapper {
+  background-color: var(--mb-background-dark); /* Dark theme background */
+  border-bottom: 1px solid var(--mb-border-dark); /* Light theme border */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 4px; /* a bit wider than 4px, up to you */
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-light);
+  border-radius: 8px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-light);
+  border-radius: 8px;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-light);
+}
+
+/* Dark theme - override track/thumb colors in .dark-theme */
+.dark-theme html::-webkit-scrollbar-track,
+.dark-theme body::-webkit-scrollbar-track,
+.dark-theme .sidebar::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-dark);
+}
+
+.dark-theme html::-webkit-scrollbar-thumb,
+.dark-theme body::-webkit-scrollbar-thumb,
+.dark-theme .sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-dark);
+}
+
+.dark-theme html::-webkit-scrollbar-thumb:hover,
+.dark-theme body::-webkit-scrollbar-thumb:hover,
+.dark-theme .sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-dark);
+}
+
+/* Firefox scrollbar for <body>, <html>, and .sidebar */
+html,
+body,
+.sidebar {
+  scrollbar-width: thin; /* narrower scrollbar in FF */
+  scrollbar-color: var(--scrollbar-thumb-light) var(--scrollbar-track-light);
+}
+.dark-theme html,
+.dark-theme body,
+.dark-theme .sidebar {
+  scrollbar-color: var(--scrollbar-thumb-dark) var(--scrollbar-track-dark);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--mb-font-family);
+}
+
+body {
+  background-color: var(--mb-background-light);
+  color: var(--mb-text-light);
+  min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+body.dark-theme {
+  background-color: var(--mb-background-dark);
+  color: var(--mb-text-dark);
+}
+
+/* ===== NAVBAR STYLES ===== */
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  /* keeps it pinned at top while body scrolls */
+}
+
+.navbar {
+  max-width: var(--mb-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  height: var(--mb-navbar-height);
+}
+
+/* Dark theme navbar */
+.dark-theme .navbar-wrapper {
+  background-color: var(--mb-background-dark);
+  border-color: var(--mb-border-dark);
+}
+
+/* ===== BRAND STYLES ===== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  height: 35px;
+  width: auto;
+  border-radius: 4px;
+  margin-left: 20px;
+}
+
+.brand-title {
+  font-size: var(--mb-title-size);
+  font-weight: 600;
+  color: var(--mb-text-light);
+  font-style: normal;
+  letter-spacing: -0.02em;
+}
+
+.dark-theme .brand-title {
+  color: var(--mb-text-dark);
+}
+
+/* ===== NAVBAR ACTIONS STYLES ===== */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ===== SEARCH STYLES ===== */
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding: 0.5rem 1rem 0.5rem 2.75rem;
+  border: 1px solid var(--mb-search-border-light);
+  border-radius: 8px;
+  font-size: var(--mb-text-size);
+  width: 250px;
+  background-color: var(--mb-search-bg-light);
+  color: var(--mb-text-light);
+  transition: all 0.2s ease;
+  box-shadow: var(--mb-search-shadow);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--mb-primary-color);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+  background-color: var(--mb-background-light);
+}
+
+.dark-theme .search-input {
+  background-color: var(--mb-search-bg-dark);
+  border-color: var(--mb-search-border-dark);
+  color: var(--mb-text-dark);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mb-icon-light);
+  pointer-events: none;
+  font-size: var(--mb-text-size);
+}
+
+/* ===== THEME TOGGLE STYLES ===== */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--mb-search-border-light);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  color: var(--mb-icon-light);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: var(--mb-search-shadow);
+}
+
+.theme-toggle:hover {
+  background-color: var(--mb-search-bg-light);
+  color: var(--mb-text-light);
+}
+
+.dark-theme .theme-toggle {
+  border-color: var(--mb-search-border-dark);
+  color: var(--mb-text-dark);
+}
+
+.dark-theme .theme-toggle:hover {
+  background-color: var(--mb-search-bg-dark);
+}
+
+/* ===== CONTENT LAYOUT ===== */
+.content-wrapper {
+  display: flex;
+  /* height: calc(100vh - var(--mb-navbar-height)); */ /* remove */
+  max-width: var(--mb-max-width);
+  margin: 0 auto;
+}
+
+/* ===== SIDEBAR STYLES ===== */
+.sidebar {
+  width: 50%;
+  max-width: 350px;
+  overflow-y: auto;
+  background-color: var(--mb-background-light);
+  padding-left: 1rem;
+  height: calc(100vh - var(--mb-navbar-height));
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar, .sidebar-content {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+.sidebar-content::before {
+  content: '';
+  position: fixed;
+  top: var(--mb-navbar-height);
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    var(--mb-background-light) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.dark-theme .sidebar-content::before {
+  background: linear-gradient(
+    to bottom,
+    var(--mb-background-dark) 0%,
+    rgba(26, 26, 26, 0) 100%
+  );
+}
+
+/* Powered by section */
+.powered-by {
+  padding: 1rem 2rem;
+  background-color: var(--mb-background-light);
+}
+
+.dark-theme .powered-by {
+  border-color: var(--mb-border-dark);
+  background-color: var(--mb-background-dark);
+}
+
+.powered-by a {
+  display: block;
+  text-align: center;
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  background-color: var(--mb-search-bg-light);
+  color: var(--mb-text-light);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.dark-theme .powered-by a {
+  background-color: var(--mb-search-bg-dark);
+  color: var(--mb-text-dark);
+}
+
+.powered-by a:hover {
+  background-color: var(--mb-powered-by-light-hover);
+  color: var(--mb-powered-by-light-text-hover);
+}
+
+.dark-theme .powered-by a:hover {
+  background-color: var( --mb-powered-by-dark-hover);
+  color: var(--mb-powered-by-dark-text-hover);
+}
+
+.dark-theme .sidebar {
+  border-right-color: var(--mb-border-dark);
+  background-color: var(--mb-background-dark);
+}
+
+/* ===== TABLE OF CONTENTS STYLES ===== */
+.table-of-contents {
+  padding: 1rem;
+  padding-left: 3rem;
+  padding-top: 2rem;
+}
+
+.table-of-contents ul {
+  list-style: none;
+}
+
+.table-of-contents li {
+  margin: 0.75rem 0;
+}
+
+.toc-section {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--mb-text-light);
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toc-section:first-child {
+  margin-top: 0 !important;
+}
+
+.dark-theme .toc-section {
+  color: var(--mb-text-dark);
+}
+
+.table-of-contents a {
+  color: var(--mb-text-light);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  display: block;
+  padding: 0.25rem 0;
+  transition: all 0.2s ease;
+}
+
+.table-of-contents a:hover {
+  color: var(--mb-primary-color);
+}
+
+.table-of-contents a.active {
+  font-weight: 700;
+  color: var(--mb-primary-color);
+}
+
+.dark-theme .table-of-contents a {
+  color: var(--mb-text-dark);
+}
+
+/* ===== MAIN CONTENT STYLES ===== */
+.main-content {
+  flex-grow: 1;
+  padding: 2rem 2rem 2rem 1rem;
+  background-color: var(--mb-background-light);
+  height: 100%; /* Ensure it takes full height of content wrapper */
+}
+
+.dark-theme .main-content {
+  background-color: var(--mb-background-dark);
+}
+
+.markdown-content {
+  max-width: 800px;
+  margin: 0 2rem;
+  line-height: 1.6;
+}
+
+/* Markdown content typography */
+.markdown-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 600;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 1rem 0;       /* top/bottom spacing only */
+  margin-left: 0;       /* remove indentation */
+  padding-left: 1rem;   /* minimal padding so bullets don't collide with text */
+  list-style-position: outside;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  /* Tweak these values to your preference */
+  margin: 1rem 0 1rem 1.25rem; 
+  padding-left: 1.25rem; 
+  /* or margin-left + padding-left, whichever you prefer */
+  list-style-position: outside; /* ensures bullets are outside the text block */
+}
+
+/* Basic styling for <pre> blocks with Prism syntax highlighting */
+pre[class*="language-"],
+code[class*="language-"],
+pre[class*="language-"] *,
+code[class*="language-"] * {
+  font-family: 'IBM Plex Mono', monospace !important;
+  line-height: 1.5;
+}
+
+/* Ensure all Prism tokens use IBM Plex Mono */
+.token.tag,
+.token.attr-name,
+.token.attr-value,
+.token.string,
+.token.property,
+.token.punctuation,
+.token.operator,
+.token.function,
+.token.keyword,
+.token.comment {
+  font-family: 'IBM Plex Mono', monospace !important;
+}
+
+pre[class*="language-"] span,
+code[class*="language-"] span {
+  font-family: 'IBM Plex Mono', monospace !important;
+}
+
+:not(pre) > code[class*="language-"] {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Use custom variables for the code background */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: var(--mb-code-bg-light);
+}
+.dark-theme :not(pre) > code[class*="language-"],
+.dark-theme pre[class*="language-"] {
+  background: var(--mb-code-bg-dark);
+}
+
+/* ========== PRISM TOOLBAR + COPY BUTTON ========== */
+.prism-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  background: transparent;
+  margin-bottom: -2.2em; /* slight overlay to float at top-right */
+  position: relative;
+}
+
+.prism-toolbar .toolbar-item {
+  margin-left: 0.5em;
+}
+
+.prism-toolbar button.copy-to-clipboard-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.prism-toolbar button.copy-to-clipboard-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== MOBILE MENU TOGGLE ===== */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--mb-search-border-light);
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  color: var(--mb-icon-light);
+  border-radius: 8px;
+  margin-right: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.dark-theme .mobile-menu-toggle {
+  border-color: var(--mb-search-border-dark);
+  color: var(--mb-text-dark);
+}
+
+/* ===== MOBILE SEARCH ===== */
+.mobile-search {
+  display: none;
+  padding: 1rem;
+  background-color: var(--mb-background-light);
+  border-bottom: 1px solid var(--mb-border-light);
+}
+
+.dark-theme .mobile-search {
+  background-color: var(--mb-background-dark);
+  border-color: var(--mb-border-dark);
+}
+
+/* ===== PAGE-SPECIFIC TOC (RIGHT SIDEBAR) ===== */
+.page-toc-sidebar {
+  width: 240px;
+  position: sticky;
+  top: calc(var(--mb-navbar-height) + 2rem);
+  height: calc(100vh - var(--mb-navbar-height) - 4rem);
+  margin-top: 2rem;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.page-toc-content {
+  position: relative;
+}
+
+.page-toc-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--mb-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark-theme .page-toc-title {
+  color: var(--mb-text-dark);
+}
+
+.page-table-of-contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.page-table-of-contents li {
+  margin: 0.75rem 0;
+  font-size: 14px;
+}
+
+.page-table-of-contents a {
+  color: var(--mb-text-light);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.dark-theme .page-table-of-contents a {
+  color: var(--mb-text-dark);
+}
+
+.page-table-of-contents a:hover {
+  color: var(--mb-primary-color);
+  opacity: 1;
+}
+
+.page-table-of-contents a.active {
+  color: var(--mb-primary-color);
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Update main content padding to 2rem 2rem overall */
+.main-content {
+  padding: 2rem 2rem;
+}
+
+/* ===== ICON CONTAINER (TOC ICONS) ===== */
+.icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  height: 20px; /* Fixed height */
+}
+
+.table-of-contents a {
+  display: flex;         /* Flex layout for icon + text */
+  align-items: center;   /* Center items vertically */
+  color: var(--mb-text-light);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0.25rem 0;
+  transition: all 0.2s ease;
+}
+
+.table-of-contents img {
+  width: 16px;
+  height: 16px;
+  display: block; /* For consistent sizing */
+  object-fit: contain;
+}
+
+.table-of-contents i {
+  font-size: 14px;
+  display: block; /* Ensure consistent display */
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+/* Base breakpoints for partial layout tweaks */
+@media (max-width: 1440px) {
+  .main-content {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  .sidebar {
+    padding-left: 0.5rem;
+  }
+  .main-content {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+  .navbar {
+    padding: 0.5rem 1rem 0.5rem 0rem;
+  }
+}
+
+/* Hide page-toc-sidebar at 1280px for a simpler layout */
+@media (max-width: 1280px) {
+  .page-toc-sidebar {
+    display: none;
+  }
+  .sidebar {
+    width: 50%;
+    max-width: 250px;
+  }
+  .table-of-contents {
+    padding: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+/* Pinned sidebar on desktop */
+@media (min-width: 1112px) {
+  .sidebar {
+    /* Make it pinned in place relative to the viewport */
+    position: sticky;
+    top: var(--mb-navbar-height);
+    height: calc(100vh - var(--mb-navbar-height));
+    overflow-y: auto;
+    /* You can keep the width, background, etc. */
+  }
+}
+
+/* 
+   At 1111px, the sidebar is replaced by a mobile toggle menu on the left, 
+   leaving only main-content on screen until the toggle is activated. 
+*/
+@media (max-width: 1111px) {
+  /* Navbar changes */
+  .navbar {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    justify-content: flex-start; /* Align items to the left */
+    gap: 1px; /* Minimal gap between elements */
+  }
+  .navbar-brand {
+    margin-right: auto; /* Push the actions to the right */
+  }
+  .logo {
+    height: 32px;
+  }
+
+  /* Toggle button visible */
+  .mobile-menu-toggle {
+    display: block;
+    margin-right: 5px; /* Gap between menu and logo */
+    box-shadow: var(--mb-search-shadow);
+  }
+
+  /* Top search hidden, mobile search shown */
+  .search-container {
+    display: none; /* Hide top search on mobile */
+  }
+  .mobile-search {
+    display: block;
+  }
+  .mobile-search .search-container {
+    display: block;
+    width: 100%;
+  }
+  .mobile-search .search-input {
+    width: 100%;
+  }
+
+  /* Navbar + content layout */
+  .navbar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+  }
+  .content-wrapper {
+    margin-top: var(--mb-navbar-height);
+    position: relative;
+  }
+
+  /* Sidebar transforms into hidden (toggle) menu */
+    .sidebar {
+      position: fixed;
+      top: var(--mb-navbar-height);
+      left: 0;
+      height: calc(100vh - var(--mb-navbar-height));
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto; /* keep this so user can scroll sidebar on mobile */
+    }
+
+  .dark-theme .powered-by {
+    border-color: var(--mb-border-dark);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  /* Main content expands behind toggle */
+  .main-content {
+    padding: 2rem;
+  }
+}
+
+/* 
+   Additional below-768 and below-576 breakpoints 
+   for further layout adjustments (e.g., full-width sidebar). 
+*/
+@media (max-width: 768px) {
+  .sidebar {
+    padding-left: 1rem;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--mb-border-light);
+  }
+  .main-content {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-input {
+    width: 150px;
+  }
+  .navbar-actions {
+    gap: 0.75rem;
+  }
+  .logo {
+    height: 32px;
+  }
+  .sidebar {
+    width: 80%;
+    max-width: 350px;
+    position: fixed;
+    top: var(--mb-navbar-height);
+    left: 0;
+    height: calc(100vh - var(--mb-navbar-height));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 0;
+  }
+  .dark-theme .powered-by {
+    border-color: var(--mb-border-dark);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .main-content {
+    padding: 2rem 0rem 2rem 0rem;
+  }
+
+  .powered-by {
+    padding: 1rem 2rem;
+    background-color: var(--mb-background-light);
+  }
+
+  .logo {
+    margin-left: 3px;
+  }
+}

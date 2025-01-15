@@ -1,0 +1,22 @@
+.next-section {
+  text-align: center;
+  margin-top: 2rem; /* Example spacing */
+}
+
+.btn-next {
+  background-color: #007acc;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn-next:hover {
+  background-color: #005fa3;
+}
+
+img  {
+  max-width: 100%;
+  height: auto;
+}
