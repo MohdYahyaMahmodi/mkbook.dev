@@ -17,7 +17,7 @@
   --mb-icon-light: #94a3b8;
   --mb-powered-by-light-hover : #000000;
   --mb-powered-by-light-text-hover : #f8fafc;
-  --mb-code-bg-light: #424242; /* Customize code block bg for light theme */
+  --mb-code-bg-light: #4e4e4e; /* Customize code block bg for light theme */
   
   /* Colors - Dark Theme */
   --mb-background-dark: #1a1a1a;
@@ -27,7 +27,7 @@
   --mb-search-border-dark: #3d3d3d;
   --mb-powered-by-dark-hover : #f8fafc;
   --mb-powered-by-dark-text-hover : #000;
-  --mb-code-bg-dark: #2f2f2f; /* Customize code block bg for dark theme */
+  --mb-code-bg-dark: #111111; /* Customize code block bg for dark theme */
 
   /* Shadows */
   --mb-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -427,9 +427,11 @@ body.dark-theme {
 /* ===== MAIN CONTENT STYLES ===== */
 .main-content {
   flex-grow: 1;
-  padding: 2rem 2rem 2rem 1rem;
+  padding: 2rem;
   background-color: var(--mb-background-light);
-  height: 100%; /* Ensure it takes full height of content wrapper */
+  height: 100%;
+  width: 100%; /* Add this */
+  overflow-x: hidden; /* Add this */
 }
 
 .dark-theme .main-content {
@@ -438,8 +440,10 @@ body.dark-theme {
 
 .markdown-content {
   max-width: 800px;
-  margin: 0 2rem;
+  margin: 0 auto; /* Change from '0 2rem' to 'auto' */
   line-height: 1.6;
+  width: 100%; /* Add this */
+  padding: 0 1rem; /* Add this instead of margin */
 }
 
 /* Markdown content typography */
@@ -714,7 +718,7 @@ pre[class*="language-"] {
   }
   .sidebar {
     width: 50%;
-    max-width: 250px;
+    max-width: 300px;
   }
   .table-of-contents {
     padding: 1rem;

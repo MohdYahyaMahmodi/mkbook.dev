@@ -8,7 +8,7 @@ const MarkdownBookConfig = {
   },
   title: {
       website: 'Website - Documentation', // Title that appears in browser tab
-      navbar: 'Documentation Title' // Title that appears in the navbar
+      navbar: 'MkBook.dev Start Guide' // Title that appears in the navbar
   },
   
   // Search
