@@ -4,122 +4,189 @@
 /* ========== CORE CSS VARIABLES ========== */
 :root {
   /* Layout */
-  --mb-max-width: 1650px;
+  --mb-max-width: 100%;
   --mb-navbar-height: 60px;
-  
-  /* Colors - Light Theme */
-  --mb-primary-color: #3b82f6;
-  --mb-background-light: #ffffff;
-  --mb-text-light: #000000;
-  --mb-border-light: #e5e7eb;
-  --mb-search-bg-light: #f8fafc;
-  --mb-search-border-light: #e2e8f0;
-  --mb-icon-light: #94a3b8;
-  --mb-powered-by-light-hover : #000000;
-  --mb-powered-by-light-text-hover : #f8fafc;
-  --mb-code-bg-light: #4e4e4e; /* Customize code block bg for light theme */
-  
-  /* Colors - Dark Theme */
-  --mb-background-dark: #1a1a1a;
-  --mb-text-dark: #ffffff;
-  --mb-border-dark: #2d2d2d;
-  --mb-search-bg-dark: #2d2d2d;
-  --mb-search-border-dark: #3d3d3d;
-  --mb-powered-by-dark-hover : #f8fafc;
-  --mb-powered-by-dark-text-hover : #000;
-  --mb-code-bg-dark: #111111; /* Customize code block bg for dark theme */
-
-  /* Shadows */
-  --mb-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --mb-search-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 
   /* Typography */
   --mb-font-family: 'Inter', sans-serif;
   --mb-title-size: 18px;
   --mb-text-size: 0.875rem;
 
-  /* Light theme scrollbar colors */
-  --scrollbar-thumb-light: rgba(0, 0, 0, 0.2);
-  --scrollbar-thumb-hover-light: rgba(0, 0, 0, 0.3);
-  --scrollbar-track-light: rgba(0, 0, 0, 0.05);
+  /* Shadows */
+  --mb-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --mb-search-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 
-  /* Dark theme scrollbar colors */
+  /* Colors - Light Theme */
+  --mb-primary-color: #d4931b;
+  --mb-background-light: #ffffff;
+  --mb-text-light: #000000;
+  --mb-border-light: #e5e7eb;
+  --mb-search-bg-light: #f8fafc;
+  --mb-powered-by-light: #e8edf1;
+  --mb-search-border-light: #e2e8f0;
+  --mb-icon-light: #94a3b8;
+  --mb-powered-by-light-hover: #3b82f6; /* Changed to primary color for better consistency */
+  --mb-powered-by-light-text-hover: #ffffff;
+  --mb-code-bg-light: #f5f5f5; /* Lighter code block bg for light theme */
+  --mb-sidebar-bg-light: #ffffffff; /* Sidebar background */
+  --mb-navbar-bg-light: var(--mb-background-light);
+  --mb-main-content-bg-light: var(--mb-background-light);
+  --mb-footer-bg-light: var(--mb-background-light);
+
+  /* Colors - Dark Theme */
+  --mb-background-dark: #1a1a1aff;
+  --mb-text-dark: #ffffff;
+  --mb-border-dark: #3a3a3a;
+  --mb-search-bg-dark: #2d2d2d;
+  --mb-powered-by-dark: #1d1d1d;
+  --mb-search-border-dark: #3d3d3d;
+  --mb-icon-dark: #a0aec0;
+  --mb-powered-by-dark-hover: #3b82f6; /* Changed to primary color for consistency */
+  --mb-powered-by-dark-text-hover: #ffffff;
+  --mb-code-bg-dark: #2e2e2e; /* Darker code block bg for dark theme */
+  --mb-sidebar-bg-dark: #1a1a1aff;  /* Sidebar background for dark mode */
+  --mb-navbar-bg-dark: var(--mb-background-dark);
+  --mb-main-content-bg-dark: var(--mb-background-dark);
+  --mb-footer-bg-dark: var(--mb-background-dark);
+
+  /* Scrollbar Dimensions */
+  --scrollbar-width: 4px;
+  --scrollbar-height: 4px;
+
+  /* Light Theme Scrollbar Colors */
+  --scrollbar-track-light: transparent;
+  --scrollbar-thumb-light: rgba(255, 8, 8, 0.2);
+  --scrollbar-thumb-hover-light: rgba(0, 0, 0, 0.3);
+
+  /* Dark Theme Scrollbar Colors */
+  --scrollbar-track-dark: transparent;
   --scrollbar-thumb-dark: rgba(255, 255, 255, 0.2);
   --scrollbar-thumb-hover-dark: rgba(255, 255, 255, 0.3);
-  --scrollbar-track-dark: rgba(0, 0, 0, 0.05);
+
+   /* Fade Effect Variables */
+  --powered-by-fade-height: 110px; /* Height of the fade */
+  --powered-by-fade-top-light: -105px; /* Position from the top in light theme */
+  --powered-by-fade-top-dark: -105px; /* Position from the top in dark theme */
+
+  /* Gradient Colors - Light Theme */
+  --powered-by-fade-start-light: #ffffff00; /* Fully opaque white */
+  --powered-by-fade-end-light: var(--mb-sidebar-bg-light); /* Fully transparent white */
+
+  /* Gradient Colors - Dark Theme */
+  --powered-by-fade-start-dark: #00000000; /* Fully opaque black */
+  --powered-by-fade-end-dark: var(--mb-sidebar-bg-dark); /* Fully transparent black */
+
+  /* Gradient Definitions */
+  --powered-by-fade-gradient-light: linear-gradient(to bottom, var(--powered-by-fade-start-light), var(--powered-by-fade-end-light));
+  --powered-by-fade-gradient-dark: linear-gradient(to bottom, var(--powered-by-fade-start-dark), var(--powered-by-fade-end-dark));
 }
 
-/* Navbar background now set to var(--mb-background-light)/dark */
-.navbar-wrapper {
-  position: sticky;
-  top: 0;
-  z-index: 1001;
-  background-color: var(--mb-background-light); /* Force background */
-  border-bottom: 1px solid var(--mb-border-light); /* Light theme border */
+/* Global scrollbar styles */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb-light) var(--scrollbar-track-light); /* Firefox */
 }
 
-.dark-theme .navbar-wrapper {
-  background-color: var(--mb-background-dark); /* Dark theme background */
-  border-bottom: 1px solid var(--mb-border-dark); /* Light theme border */
+/* For Chrome, Safari, and Edge */
+html::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-height);
 }
 
-html::-webkit-scrollbar,
-body::-webkit-scrollbar,
-.sidebar::-webkit-scrollbar {
-  width: 4px; /* a bit wider than 4px, up to you */
-}
-
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track,
-.sidebar::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: var(--scrollbar-track-light);
-  border-radius: 8px;
 }
 
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb,
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-light);
-  border-radius: 8px;
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-light);
+  border-radius: var(--scrollbar-width);
 }
 
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover,
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover-light);
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-light);
 }
 
-/* Dark theme - override track/thumb colors in .dark-theme */
-.dark-theme html::-webkit-scrollbar-track,
-.dark-theme body::-webkit-scrollbar-track,
-.dark-theme .sidebar::-webkit-scrollbar-track {
+/* Dark theme scrollbar */
+html.dark-theme,
+.dark-theme html {
+  scrollbar-color: var(--scrollbar-thumb-dark) var(--scrollbar-track-dark); /* Firefox */
+}
+
+html.dark-theme::-webkit-scrollbar-track,
+.dark-theme html::-webkit-scrollbar-track {
   background: var(--scrollbar-track-dark);
 }
 
-.dark-theme html::-webkit-scrollbar-thumb,
-.dark-theme body::-webkit-scrollbar-thumb,
-.dark-theme .sidebar::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-dark);
+html.dark-theme::-webkit-scrollbar-thumb,
+.dark-theme html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-dark);
 }
 
-.dark-theme html::-webkit-scrollbar-thumb:hover,
-.dark-theme body::-webkit-scrollbar-thumb:hover,
-.dark-theme .sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover-dark);
+html.dark-theme::-webkit-scrollbar-thumb:hover,
+.dark-theme html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-dark);
 }
 
-/* Firefox scrollbar for <body>, <html>, and .sidebar */
-html,
-body,
-.sidebar {
-  scrollbar-width: thin; /* narrower scrollbar in FF */
-  scrollbar-color: var(--scrollbar-thumb-light) var(--scrollbar-track-light);
+/* Sidebar specific scrollbar */
+.sidebar-content {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb-light) var(--scrollbar-track-light); /* Firefox */
 }
-.dark-theme html,
-.dark-theme body,
-.dark-theme .sidebar {
-  scrollbar-color: var(--scrollbar-thumb-dark) var(--scrollbar-track-dark);
+
+.sidebar-content::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-height);
 }
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-light);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-light);
+  border-radius: var(--scrollbar-width);
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-light);
+}
+
+/* Dark theme sidebar scrollbar */
+.dark-theme .sidebar-content {
+  scrollbar-color: var(--scrollbar-thumb-dark) var(--scrollbar-track-dark); /* Firefox */
+}
+
+.dark-theme .sidebar-content::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-dark);
+}
+
+.dark-theme .sidebar-content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-dark);
+}
+
+.dark-theme .sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-dark);
+}
+
+/* Auto-hiding scrollbar styles */
+html, .sidebar-content {
+  scrollbar-width: none; /* Firefox */
+}
+
+html:hover, .sidebar-content:hover {
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* For Webkit browsers */
+html::-webkit-scrollbar, .sidebar-content::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+html:hover::-webkit-scrollbar, .sidebar-content:hover::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
 
 /* ===== BASE STYLES ===== */
 * {
@@ -129,13 +196,14 @@ body,
   font-family: var(--mb-font-family);
 }
 
-body {
+html {
   background-color: var(--mb-background-light);
   color: var(--mb-text-light);
   min-height: 100vh; /* Ensure body takes full viewport height */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-body.dark-theme {
+html.dark-theme {
   background-color: var(--mb-background-dark);
   color: var(--mb-text-dark);
 }
@@ -145,7 +213,14 @@ body.dark-theme {
   position: sticky;
   top: 0;
   z-index: 1001;
-  /* keeps it pinned at top while body scrolls */
+  background-color: var(--mb-navbar-bg-light);
+  border-bottom: 1px solid var(--mb-border-light);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark-theme .navbar-wrapper {
+  background-color: var(--mb-navbar-bg-dark);
+  border-color: var(--mb-border-dark);
 }
 
 .navbar {
@@ -154,14 +229,8 @@ body.dark-theme {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem 0.5rem 2rem;
+  padding: 0.5rem 2rem;
   height: var(--mb-navbar-height);
-}
-
-/* Dark theme navbar */
-.dark-theme .navbar-wrapper {
-  background-color: var(--mb-background-dark);
-  border-color: var(--mb-border-dark);
 }
 
 /* ===== BRAND STYLES ===== */
@@ -186,6 +255,7 @@ body.dark-theme {
   color: var(--mb-text-light);
   font-style: normal;
   letter-spacing: -0.02em;
+  transition: color 0.3s;
 }
 
 .dark-theme .brand-title {
@@ -239,6 +309,10 @@ body.dark-theme {
   font-size: var(--mb-text-size);
 }
 
+.dark-theme .search-icon {
+  color: var(--mb-icon-dark);
+}
+
 /* ===== THEME TOGGLE STYLES ===== */
 .theme-toggle {
   background: none;
@@ -258,17 +332,17 @@ body.dark-theme {
 
 .dark-theme .theme-toggle {
   border-color: var(--mb-search-border-dark);
-  color: var(--mb-text-dark);
+  color: var(--mb-icon-dark);
 }
 
 .dark-theme .theme-toggle:hover {
   background-color: var(--mb-search-bg-dark);
+  color: var(--mb-text-dark);
 }
 
 /* ===== CONTENT LAYOUT ===== */
 .content-wrapper {
   display: flex;
-  /* height: calc(100vh - var(--mb-navbar-height)); */ /* remove */
   max-width: var(--mb-max-width);
   margin: 0 auto;
 }
@@ -278,12 +352,17 @@ body.dark-theme {
   width: 50%;
   max-width: 350px;
   overflow-y: auto;
-  background-color: var(--mb-background-light);
-  padding-left: 1rem;
+  background-color: var(--mb-sidebar-bg-light);
   height: calc(100vh - var(--mb-navbar-height));
   position: relative;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark-theme .sidebar {
+  background-color: var(--mb-sidebar-bg-dark);
+  border-right: 1px solid var(--mb-border-dark);
 }
 
 .sidebar, .sidebar-content {
@@ -297,39 +376,35 @@ body.dark-theme {
   position: relative;
 }
 
-.sidebar-content::before {
+/* ===== Powered By Section ===== */
+/* ===== Powered By Section ===== */
+.powered-by {
+  position: relative; /* Establishes positioning context */
+  padding: 1rem 2rem;
+  background-color: var(--mb-sidebar-bg-light);
+  transition: background-color 0.3s, border-color 0.3s;
+  z-index: 0; /* Base z-index */
+}
+
+.powered-by::before {
   content: '';
-  position: fixed;
-  top: var(--mb-navbar-height);
+  position: absolute;
+  top: var(--powered-by-fade-top-light); /* Uses the fade top position for light theme */
   left: 0;
   right: 0;
-  height: 20px;
-  background: linear-gradient(
-    to bottom,
-    var(--mb-background-light) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
+  height: var(--powered-by-fade-height); /* Uses the fade height variable */
+  background: var(--powered-by-fade-gradient-light); /* Uses the light theme gradient */
+  pointer-events: none; /* Prevents the pseudo-element from blocking interactions */
+  z-index: 1; /* Ensures it sits above the `.powered-by` content */
 }
 
-.dark-theme .sidebar-content::before {
-  background: linear-gradient(
-    to bottom,
-    var(--mb-background-dark) 0%,
-    rgba(26, 26, 26, 0) 100%
-  );
-}
-
-/* Powered by section */
-.powered-by {
-  padding: 1rem 2rem;
-  background-color: var(--mb-background-light);
+.dark-theme .powered-by::before {
+  top: var(--powered-by-fade-top-dark); /* Adjusts position for dark theme */
+  background: var(--powered-by-fade-gradient-dark); /* Uses the dark theme gradient */
 }
 
 .dark-theme .powered-by {
-  border-color: var(--mb-border-dark);
-  background-color: var(--mb-background-dark);
+  background-color: var(--mb-sidebar-bg-dark);
 }
 
 .powered-by a {
@@ -337,7 +412,7 @@ body.dark-theme {
   text-align: center;
   padding: 1rem 1rem;
   border-radius: 8px;
-  background-color: var(--mb-search-bg-light);
+  background-color: var(--mb-powered-by-light);
   color: var(--mb-text-light);
   text-decoration: none;
   font-size: 14px;
@@ -346,7 +421,7 @@ body.dark-theme {
 }
 
 .dark-theme .powered-by a {
-  background-color: var(--mb-search-bg-dark);
+  background-color: var(--mb-powered-by-dark);
   color: var(--mb-text-dark);
 }
 
@@ -356,13 +431,8 @@ body.dark-theme {
 }
 
 .dark-theme .powered-by a:hover {
-  background-color: var( --mb-powered-by-dark-hover);
+  background-color: var(--mb-powered-by-dark-hover);
   color: var(--mb-powered-by-dark-text-hover);
-}
-
-.dark-theme .sidebar {
-  border-right-color: var(--mb-border-dark);
-  background-color: var(--mb-background-dark);
 }
 
 /* ===== TABLE OF CONTENTS STYLES ===== */
@@ -389,6 +459,7 @@ body.dark-theme {
   opacity: 0.8;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  transition: color 0.3s;
 }
 
 .toc-section:first-child {
@@ -400,15 +471,16 @@ body.dark-theme {
 }
 
 .table-of-contents a {
+  display: flex; /* Flex layout for icon + text */
+  align-items: center; /* Center items vertically */
   color: var(--mb-text-light);
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--mb-font-family);
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
-  display: block;
   padding: 0.25rem 0;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .table-of-contents a:hover {
@@ -424,29 +496,101 @@ body.dark-theme {
   color: var(--mb-text-dark);
 }
 
+.dark-theme .table-of-contents a.active {
+  color: var(--mb-primary-color);
+}
+
+.page-toc-sidebar {
+  width: 240px;
+  position: sticky;
+  top: calc(var(--mb-navbar-height) + 2rem);
+  height: calc(100vh - var(--mb-navbar-height) - 4rem);
+  margin-top: 2rem;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.page-toc-content {
+  position: relative;
+}
+
+.page-toc-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--mb-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.dark-theme .page-toc-title {
+  color: var(--mb-text-dark);
+}
+
+.page-table-of-contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.page-table-of-contents li {
+  margin: 0.75rem 0;
+  font-size: 14px;
+}
+
+.page-table-of-contents a {
+  color: var(--mb-text-light);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.8;
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.page-table-of-contents a:hover {
+  color: var(--mb-primary-color);
+  opacity: 1;
+}
+
+.page-table-of-contents a.active {
+  color: var(--mb-primary-color);
+  opacity: 1;
+  font-weight: 500;
+}
+
+.dark-theme .page-table-of-contents a {
+  color: var(--mb-text-dark);
+}
+
+.dark-theme .page-table-of-contents a.active {
+  color: var(--mb-primary-color);
+}
+
 /* ===== MAIN CONTENT STYLES ===== */
 .main-content {
   flex-grow: 1;
   padding: 2rem;
-  background-color: var(--mb-background-light);
+  background-color: var(--mb-main-content-bg-light);
   height: 100%;
-  width: 100%; /* Add this */
-  overflow-x: hidden; /* Add this */
+  width: 100%;
+  overflow-x: hidden;
+  transition: background-color 0.3s;
 }
 
 .dark-theme .main-content {
-  background-color: var(--mb-background-dark);
+  background-color: var(--mb-main-content-bg-dark);
 }
 
 .markdown-content {
   max-width: 800px;
-  margin: 0 auto; /* Change from '0 2rem' to 'auto' */
+  margin: 0 auto;
   line-height: 1.6;
-  width: 100%; /* Add this */
-  padding: 0 1rem; /* Add this instead of margin */
+  width: 100%;
+  padding: 0 1rem;
 }
 
-/* Markdown content typography */
 .markdown-content h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -471,22 +615,17 @@ body.dark-theme {
 
 .markdown-content ul,
 .markdown-content ol {
-  margin: 1rem 0;       /* top/bottom spacing only */
-  margin-left: 0;       /* remove indentation */
-  padding-left: 1rem;   /* minimal padding so bullets don't collide with text */
+  margin: 1rem 0;
+  padding-left: 1.25rem;
   list-style-position: outside;
 }
 
 .markdown-content ul,
 .markdown-content ol {
-  /* Tweak these values to your preference */
-  margin: 1rem 0 1rem 1.25rem; 
-  padding-left: 1.25rem; 
-  /* or margin-left + padding-left, whichever you prefer */
-  list-style-position: outside; /* ensures bullets are outside the text block */
+  list-style: inherit;
 }
 
-/* Basic styling for <pre> blocks with Prism syntax highlighting */
+/* ===== CODE BLOCK STYLES ===== */
 pre[class*="language-"],
 code[class*="language-"],
 pre[class*="language-"] *,
@@ -495,7 +634,6 @@ code[class*="language-"] * {
   line-height: 1.5;
 }
 
-/* Ensure all Prism tokens use IBM Plex Mono */
 .token.tag,
 .token.attr-name,
 .token.attr-value,
@@ -523,17 +661,18 @@ code[class*="language-"] span {
 pre[class*="language-"] {
   background: var(--mb-code-bg-light);
 }
+
 .dark-theme :not(pre) > code[class*="language-"],
 .dark-theme pre[class*="language-"] {
   background: var(--mb-code-bg-dark);
 }
 
-/* ========== PRISM TOOLBAR + COPY BUTTON ========== */
+/* ===== PRISM TOOLBAR + COPY BUTTON ===== */
 .prism-toolbar {
   display: flex;
   justify-content: flex-end;
   background: transparent;
-  margin-bottom: -2.2em; /* slight overlay to float at top-right */
+  margin-bottom: -2.2em;
   position: relative;
 }
 
@@ -551,6 +690,7 @@ pre[class*="language-"] {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
 .prism-toolbar button.copy-to-clipboard-button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -566,10 +706,21 @@ pre[class*="language-"] {
   border-radius: 8px;
   margin-right: 0.4rem;
   transition: all 0.2s ease;
+  box-shadow: var(--mb-search-shadow);
 }
 
 .dark-theme .mobile-menu-toggle {
   border-color: var(--mb-search-border-dark);
+  color: var(--mb-text-dark);
+}
+
+.mobile-menu-toggle:hover {
+  background-color: var(--mb-search-bg-light);
+  color: var(--mb-text-light);
+}
+
+.dark-theme .mobile-menu-toggle:hover {
+  background-color: var(--mb-search-bg-dark);
   color: var(--mb-text-dark);
 }
 
@@ -579,6 +730,7 @@ pre[class*="language-"] {
   padding: 1rem;
   background-color: var(--mb-background-light);
   border-bottom: 1px solid var(--mb-border-light);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .dark-theme .mobile-search {
@@ -587,131 +739,22 @@ pre[class*="language-"] {
 }
 
 /* ===== PAGE-SPECIFIC TOC (RIGHT SIDEBAR) ===== */
-.page-toc-sidebar {
-  width: 240px;
-  position: sticky;
-  top: calc(var(--mb-navbar-height) + 2rem);
-  height: calc(100vh - var(--mb-navbar-height) - 4rem);
-  margin-top: 2rem;
-  margin-right: 0.5rem;
-  margin-left: 1rem;
-  overflow-y: auto;
-  flex-shrink: 0;
-}
-
-.page-toc-content {
-  position: relative;
-}
-
-.page-toc-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--mb-text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.dark-theme .page-toc-title {
-  color: var(--mb-text-dark);
-}
-
-.page-table-of-contents ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.page-table-of-contents li {
-  margin: 0.75rem 0;
-  font-size: 14px;
-}
-
-.page-table-of-contents a {
-  color: var(--mb-text-light);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-  display: block;
-  padding: 0.25rem 0;
-}
-
-.dark-theme .page-table-of-contents a {
-  color: var(--mb-text-dark);
-}
-
-.page-table-of-contents a:hover {
-  color: var(--mb-primary-color);
-  opacity: 1;
-}
-
-.page-table-of-contents a.active {
-  color: var(--mb-primary-color);
-  opacity: 1;
-  font-weight: 500;
-}
-
-/* Update main content padding to 2rem 2rem overall */
-.main-content {
-  padding: 2rem 2rem;
-}
-
-/* ===== ICON CONTAINER (TOC ICONS) ===== */
-.icon-container {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  margin-right: 12px;
-  flex-shrink: 0;
-  height: 20px; /* Fixed height */
-}
-
-.table-of-contents a {
-  display: flex;         /* Flex layout for icon + text */
-  align-items: center;   /* Center items vertically */
-  color: var(--mb-text-light);
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: normal;
-  padding: 0.25rem 0;
-  transition: all 0.2s ease;
-}
-
-.table-of-contents img {
-  width: 16px;
-  height: 16px;
-  display: block; /* For consistent sizing */
-  object-fit: contain;
-}
-
-.table-of-contents i {
-  font-size: 14px;
-  display: block; /* Ensure consistent display */
-}
+/* Already handled above */
 
 /* ===== RESPONSIVE STYLES ===== */
 /* Base breakpoints for partial layout tweaks */
 @media (max-width: 1440px) {
   .main-content {
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 2rem;
   }
 }
 
 @media (max-width: 1300px) {
-  .sidebar {
-    padding-left: 0.5rem;
-  }
-  .main-content {
-    padding: 2rem 2rem 2rem 2rem;
-  }
   .navbar {
     padding: 0.5rem 1rem 0.5rem 0rem;
   }
 }
 
-/* Hide page-toc-sidebar at 1280px for a simpler layout */
 @media (max-width: 1280px) {
   .page-toc-sidebar {
     display: none;
@@ -726,31 +769,24 @@ pre[class*="language-"] {
   }
 }
 
-/* Pinned sidebar on desktop */
 @media (min-width: 1112px) {
   .sidebar {
-    /* Make it pinned in place relative to the viewport */
     position: sticky;
     top: var(--mb-navbar-height);
     height: calc(100vh - var(--mb-navbar-height));
     overflow-y: auto;
-    /* You can keep the width, background, etc. */
   }
 }
 
-/* 
-   At 1111px, the sidebar is replaced by a mobile toggle menu on the left, 
-   leaving only main-content on screen until the toggle is activated. 
-*/
 @media (max-width: 1111px) {
   /* Navbar changes */
   .navbar {
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    justify-content: flex-start; /* Align items to the left */
-    gap: 1px; /* Minimal gap between elements */
+    padding: 0.5rem 1rem;
+    justify-content: flex-start;
+    gap: 1px;
   }
   .navbar-brand {
-    margin-right: auto; /* Push the actions to the right */
+    margin-right: auto;
   }
   .logo {
     height: 32px;
@@ -759,13 +795,12 @@ pre[class*="language-"] {
   /* Toggle button visible */
   .mobile-menu-toggle {
     display: block;
-    margin-right: 5px; /* Gap between menu and logo */
-    box-shadow: var(--mb-search-shadow);
+    margin-right: 5px;
   }
 
   /* Top search hidden, mobile search shown */
   .search-container {
-    display: none; /* Hide top search on mobile */
+    display: none;
   }
   .mobile-search {
     display: block;
@@ -784,7 +819,6 @@ pre[class*="language-"] {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1001;
   }
   .content-wrapper {
     margin-top: var(--mb-navbar-height);
@@ -792,20 +826,22 @@ pre[class*="language-"] {
   }
 
   /* Sidebar transforms into hidden (toggle) menu */
-    .sidebar {
-      position: fixed;
-      top: var(--mb-navbar-height);
-      left: 0;
-      height: calc(100vh - var(--mb-navbar-height));
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto; /* keep this so user can scroll sidebar on mobile */
-    }
-
-  .dark-theme .powered-by {
-    border-color: var(--mb-border-dark);
+  .sidebar {
+    position: fixed;
+    top: var(--mb-navbar-height);
+    left: 0;
+    height: calc(100vh - var(--mb-navbar-height));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    background-color: var(--mb-sidebar-bg-light);
   }
+
+  .dark-theme .sidebar {
+    background-color: var(--mb-sidebar-bg-dark);
+  }
+
   .sidebar.active {
     transform: translateX(0);
   }
@@ -816,21 +852,22 @@ pre[class*="language-"] {
   }
 }
 
-/* 
-   Additional below-768 and below-576 breakpoints 
-   for further layout adjustments (e.g., full-width sidebar). 
-*/
 @media (max-width: 768px) {
   .sidebar {
-    padding-left: 1rem;
     width: 100%;
     max-width: none;
     height: auto;
     border-right: none;
     border-bottom: 1px solid var(--mb-border-light);
+    background-color: var(--mb-sidebar-bg-light);
   }
   .main-content {
-    padding: 2rem 2rem 2rem 2rem;
+    padding: 2rem;
+  }
+
+  .dark-theme .sidebar {
+    border-bottom: 1px solid var(--mb-border-dark);
+    background-color: var(--mb-sidebar-bg-dark);
   }
 }
 
@@ -843,6 +880,7 @@ pre[class*="language-"] {
   }
   .logo {
     height: 32px;
+    margin-left: 3px;
   }
   .sidebar {
     width: 80%;
@@ -855,23 +893,56 @@ pre[class*="language-"] {
     transition: transform 0.3s ease;
     z-index: 1000;
     padding: 0;
+    background-color: var(--mb-sidebar-bg-light);
   }
-  .dark-theme .powered-by {
-    border-color: var(--mb-border-dark);
+  .dark-theme .sidebar {
+    background-color: var(--mb-sidebar-bg-dark);
   }
   .sidebar.active {
     transform: translateX(0);
   }
   .main-content {
-    padding: 2rem 0rem 2rem 0rem;
+    padding: 2rem 0rem;
   }
 
   .powered-by {
-    padding: 1rem 2rem;
-    background-color: var(--mb-background-light);
+    background-color: var(--mb-footer-bg-light);
   }
 
-  .logo {
-    margin-left: 3px;
+  .dark-theme .powered-by {
+    background-color: var(--mb-footer-bg-dark);
   }
+}
+
+/* ===== ICON CONTAINER (TOC ICONS) ===== */
+.icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  height: 20px;
+}
+
+.table-of-contents img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  object-fit: contain;
+}
+
+.table-of-contents i {
+  font-size: 14px;
+  display: block;
+}
+
+/* ===== ADDITIONAL TRANSITIONS ===== */
+.sidebar,
+.navbar-wrapper,
+.main-content,
+.powered-by,
+.theme-toggle,
+.mobile-menu-toggle {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }

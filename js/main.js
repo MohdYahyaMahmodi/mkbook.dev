@@ -79,16 +79,16 @@ class MarkdownBook {
     initializeTheme() {
       const themeToggle = document.querySelector('.theme-toggle');
       const themeIcon = themeToggle.querySelector('i');
-  
+    
       const savedTheme = localStorage.getItem('theme') || this.config.theme.default;
       if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
+        document.documentElement.classList.add('dark-theme'); // Changed from body to html
         themeIcon.className = 'fa-solid fa-moon';
       }
-  
+    
       themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        const isDark = document.body.classList.contains('dark-theme');
+        document.documentElement.classList.toggle('dark-theme'); // Changed from body to html
+        const isDark = document.documentElement.classList.contains('dark-theme');
         themeIcon.className = isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
