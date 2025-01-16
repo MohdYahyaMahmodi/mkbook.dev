@@ -1,5 +1,5 @@
 /* main.js */
-// MarkdownBook Main JavaScript (Enhanced Search Functionality with Modal)
+// MarkdownBook Main JavaScript
 
 /* Ensure that Prism.js and other dependencies are loaded before this script */
 
@@ -61,7 +61,8 @@ class MarkdownBook {
     // if (this.config.search.enabled) {
     //   this.initializeSearch();
     // }
-    // Search functionality is in development. The search initialization is currently commented out and will be enabled once the feature is ready.
+    // Search functionality is in development. The search initialization
+    // is currently commented out and will be enabled once the feature is ready.
   }
 
   handleHashChange() {
@@ -90,17 +91,17 @@ class MarkdownBook {
 
     const savedTheme = localStorage.getItem('theme') || this.config.theme.default;
     if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark-theme'); // Changed from body to html
+      document.documentElement.classList.add('dark-theme');
       themeIcon.className = 'fa-solid fa-moon';
     }
 
     themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark-theme'); // Changed from body to html
+      document.documentElement.classList.toggle('dark-theme');
       const isDark = document.documentElement.classList.contains('dark-theme');
       themeIcon.className = isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-      // Update modal theme if active
+      // Update modal theme if active (search functionality is in development)
       const searchModalContent = document.querySelector('.search-modal-content');
       if (searchModalContent) {
         if (isDark) {
@@ -112,67 +113,13 @@ class MarkdownBook {
     });
   }
 
-  // initializeSearch() {
-  //   // Fetch all pages and build the search index
-  //   this.fetchAllPages().then(() => {
-  //     // Initialize Fuse.js after fetching pages
-  //     this.fuse = new Fuse(this.searchIndex, {
-  //       keys: ['title', 'content'], // Specify fields to search in
-  //       threshold: 0.4, // Adjust sensitivity (0 = exact match, 1 = loose match)
-  //       includeScore: true, // Include score for sorting
-  //       minMatchCharLength: 2,
-  //     });
-
-  //     this.setupSearchModal();
-  //   }).catch(error => {
-  //     console.error('Error initializing search:', error);
-  //   });
-  // }
-  // 
-  // // Search functionality is in development. The initializeSearch method is currently commented out and will be enabled once the feature is ready.
-
-  // async fetchAllPages() {
-  //   // Assuming tocPath contains the list of pages
-  //   try {
-  //     const response = await fetch(this.config.content.tocPath);
-  //     const tocMarkdown = await response.text();
-  //     const tocData = this.parseTocMarkdown(tocMarkdown);
-
-  //     // Extract all page paths
-  //     const pagePaths = [];
-  //     tocData.forEach(item => {
-  //       if (item.items && Array.isArray(item.items)) {
-  //         item.items.forEach(subItem => {
-  //           pagePaths.push(subItem.path);
-  //         });
-  //       } else if (item.path) {
-  //         pagePaths.push(item.path);
-  //       }
-  //     });
-
-  //     // Fetch content for each page
-  //     const fetchPromises = pagePaths.map(async (path) => {
-  //       const response = await fetch(`${this.config.content.basePath}/${path}`);
-  //       const markdown = await response.text();
-  //       const htmlContent = marked.parse(markdown);
-  //       const plainText = this.stripHtml(htmlContent);
-  //       const title = this.extractTitle(markdown) || path.replace('.md', '');
-
-  //       this.searchIndex.push({
-  //         title: title,
-  //         path: path,
-  //         content: plainText,
-  //       });
-  //     });
-
-  //     await Promise.all(fetchPromises);
-  //     console.log('[Search] All pages fetched and indexed.');
-  //   } catch (error) {
-  //     console.error('Error fetching pages for search:', error);
-  //   }
-  // }
-  // 
-  // // Search functionality is in development. The fetchAllPages method is currently commented out and will be enabled once the feature is ready.
+  /* -------------- Search placeholders (commented out) --------------
+     initializeSearch() { ... }
+     fetchAllPages() { ... }
+     setupSearchModal() { ... }
+     displayModalSearchResults() { ... }
+     handleSearch() { ... }
+  --------------------------------------------------------------- */
 
   stripHtml(html) {
     // Create a temporary element to strip HTML tags
@@ -191,115 +138,6 @@ class MarkdownBook {
     }
     return null;
   }
-
-  // setupSearchModal() {
-  //   const searchModal = document.getElementById('search-modal');
-  //   const openSearchModalButtons = [
-  //     document.getElementById('open-search-modal'),
-  //     document.getElementById('trigger-search-modal'),
-  //     document.getElementById('open-search-modal-mobile'),
-  //     document.getElementById('trigger-search-modal-mobile'),
-  //   ];
-  //   const closeSearchModalButton = searchModal.querySelector('.search-modal-close');
-  //   const modalSearchInput = document.getElementById('modal-search-input');
-  //   const modalSearchResults = document.getElementById('modal-search-results');
-  //   const contentWrapper = document.getElementById('content-wrapper');
-
-  //   // Function to open the search modal
-  //   const openModal = () => {
-  //     searchModal.classList.add('active');
-  //     document.body.classList.add('no-scroll');
-  //     contentWrapper.classList.add('blurred');
-  //     modalSearchInput.focus();
-  //   };
-
-  //   // Function to close the search modal
-  //   const closeModal = () => {
-  //     searchModal.classList.remove('active');
-  //     document.body.classList.remove('no-scroll');
-  //     contentWrapper.classList.remove('blurred');
-  //     modalSearchInput.value = '';
-  //     modalSearchResults.innerHTML = '';
-  //   };
-
-  //   // Attach event listeners to open modal buttons
-  //   openSearchModalButtons.forEach(button => {
-  //     if (button) {
-  //       button.addEventListener('click', (e) => {
-  //         e.preventDefault();
-  //         openModal();
-  //       });
-  //     }
-  //   });
-
-  //   // Attach event listener to close modal button
-  //   closeSearchModalButton.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     closeModal();
-  //   });
-
-  //   // Close modal when clicking outside the modal content
-  //   searchModal.addEventListener('click', (e) => {
-  //     if (e.target === searchModal) {
-  //       closeModal();
-  //     }
-  //   });
-
-  //   // Handle Esc key to close modal
-  //   document.addEventListener('keydown', (e) => {
-  //     if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-  //       closeModal();
-  //     }
-  //   });
-
-  //   // Handle search input
-  //   modalSearchInput.addEventListener('input', (e) => {
-  //     const query = e.target.value.trim();
-  //     if (query.length < 2) {
-  //       modalSearchResults.innerHTML = '<p>Type at least 2 characters to search.</p>';
-  //       return;
-  //     }
-
-  //     const results = this.fuse.search(query, { limit: 10 });
-  //     this.displayModalSearchResults(results, modalSearchResults, closeModal);
-  //   });
-  // }
-  // 
-  // // Search functionality is in development. The setupSearchModal method is currently commented out and will be enabled once the feature is ready.
-
-  // displayModalSearchResults(results, container, closeModal) {
-  //   container.innerHTML = ''; // Clear previous results
-
-  //   if (results.length === 0) {
-  //     container.innerHTML = '<p>No results found.</p>';
-  //     return;
-  //   }
-
-  //   results.forEach(result => {
-  //     const item = result.item;
-  //     const div = document.createElement('div');
-  //     div.classList.add('search-result-item');
-
-  //     // Title
-  //     const title = document.createElement('h4');
-  //     title.textContent = item.title;
-  //     div.appendChild(title);
-
-  //     // Snippet (optional: you can implement snippet extraction)
-  //     // For simplicity, we'll skip snippets here
-
-  //     // Click event to navigate
-  //     div.addEventListener('click', () => {
-  //       const targetPath = item.path.replace('.md', '');
-  //       window.location.hash = `#${targetPath}`;
-  //       closeModal();
-  //     });
-
-  //     container.appendChild(div);
-  //   });
-  // }
-  // 
-  // // Search functionality is in development. The displayModalSearchResults method is currently commented out and will be enabled once the feature is ready.
 
   async loadTableOfContents() {
     try {
@@ -330,7 +168,7 @@ class MarkdownBook {
       return null;
     };
 
-    lines.forEach(line => {
+    lines.forEach((line) => {
       if (line.startsWith('**')) {
         // Section header
         const iconInfo = parseIcon(line);
@@ -341,7 +179,7 @@ class MarkdownBook {
         currentSection = {
           title,
           items: [],
-          icon: iconInfo
+          icon: iconInfo,
         };
         tocData.push(currentSection);
       } else if (line.startsWith('# ')) {
@@ -356,7 +194,7 @@ class MarkdownBook {
           title,
           id,
           path: `${id}.md`,
-          icon: iconInfo || { type: 'fa', value: 'fa-solid fa-hashtag' }
+          icon: iconInfo || { type: 'fa', value: 'fa-solid fa-hashtag' },
         };
 
         if (currentSection) {
@@ -399,7 +237,7 @@ class MarkdownBook {
     const toc = document.getElementById('toc');
     const ul = document.createElement('ul');
 
-    tocData.forEach(item => {
+    tocData.forEach((item) => {
       if (item.items) {
         // Section header
         const sectionHeader = document.createElement('li');
@@ -412,7 +250,7 @@ class MarkdownBook {
         sectionHeader.appendChild(document.createTextNode(item.title));
         ul.appendChild(sectionHeader);
 
-        item.items.forEach(subItem => {
+        item.items.forEach((subItem) => {
           this.createTocItem(subItem, ul);
         });
       } else {
@@ -421,71 +259,6 @@ class MarkdownBook {
     });
 
     toc.appendChild(ul);
-  }
-
-  generatePageToc() {
-    const pageToc = document.getElementById('page-toc');
-    const headers = document.querySelectorAll('#markdown-content h2');
-
-    if (!headers.length) {
-      pageToc.innerHTML = '<p class="no-headers">No sections found</p>';
-      return;
-    }
-
-    const ul = document.createElement('ul');
-    headers.forEach(header => {
-      const headerId = header.id;
-      const text = header.textContent;
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      const baseName = this.currentPage.replace('.md', '');
-
-      a.href = `#${baseName}#${headerId}`;
-      a.textContent = text;
-
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.getElementById(headerId);
-        if (target) {
-          history.pushState(null, '', `#${baseName}#${headerId}`);
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-          document.querySelectorAll('.page-table-of-contents a').forEach(link =>
-            link.classList.remove('active')
-          );
-          a.classList.add('active');
-        }
-      });
-
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-
-    pageToc.innerHTML = '';
-    pageToc.appendChild(ul);
-
-    // Scroll spy
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          const currentPageBase = this.currentPage.replace('.md', '');
-          document.querySelectorAll('.page-table-of-contents a').forEach(link => {
-            const isActive = link.getAttribute('href') === `#${currentPageBase}#${id}`;
-            link.classList.toggle('active', isActive);
-            if (isActive && entry.intersectionRatio > 0.5) {
-              history.replaceState(null, '', `#${currentPageBase}#${id}`);
-            }
-          });
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: '-20% 0px -80% 0px',
-      threshold: [0, 0.5, 1]
-    });
-    headers.forEach(header => observer.observe(header));
   }
 
   createTocItem(item, parent) {
@@ -510,87 +283,202 @@ class MarkdownBook {
     parent.appendChild(li);
   }
 
+  generatePageToc() {
+    const pageToc = document.getElementById('page-toc');
+    const headers = document.querySelectorAll('#markdown-content h2');
+
+    if (!headers.length) {
+      pageToc.innerHTML = '<p class="no-headers">No sections found</p>';
+      return;
+    }
+
+    const ul = document.createElement('ul');
+    headers.forEach((header) => {
+      const headerId = header.id;
+      const text = header.textContent;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      const baseName = this.currentPage.replace('.md', '');
+
+      a.href = `#${baseName}#${headerId}`;
+      a.textContent = text;
+
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(headerId);
+        if (target) {
+          history.pushState(null, '', `#${baseName}#${headerId}`);
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          document.querySelectorAll('.page-table-of-contents a').forEach((link) =>
+            link.classList.remove('active')
+          );
+          a.classList.add('active');
+        }
+      });
+
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+
+    pageToc.innerHTML = '';
+    pageToc.appendChild(ul);
+
+    // Scroll spy
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const currentPageBase = this.currentPage.replace('.md', '');
+          document.querySelectorAll('.page-table-of-contents a').forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${currentPageBase}#${id}`;
+            link.classList.toggle('active', isActive);
+            if (isActive && entry.intersectionRatio > 0.5) {
+              history.replaceState(null, '', `#${currentPageBase}#${id}`);
+            }
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: '-20% 0px -80% 0px',
+      threshold: [0, 0.5, 1],
+    });
+    headers.forEach((header) => observer.observe(header));
+  }
+
+  /**
+   * Convert the blockquote input (which can be string, object, or array of tokens)
+   * into a single string for easier parsing.
+   */
+  ensureString(input) {
+    // If it's already a string, just return it
+    if (typeof input === 'string') {
+      return input;
+    }
+    // If it's an array (old Marked versions sometimes pass an array of tokens)
+    if (Array.isArray(input)) {
+      return input.map((item) => this.ensureString(item)).join('');
+    }
+    // If it's an object with a 'text' property
+    if (input && typeof input === 'object' && 'text' in input) {
+      return this.ensureString(input.text);
+    }
+    // Fallback
+    return String(input);
+  }
+
   async loadPage(path) {
     try {
       if (!this.pages.has(path)) {
         const response = await fetch(`${this.config.content.basePath}/${path}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const markdown = await response.text();
         this.pages.set(path, markdown);
       }
 
       const content = this.pages.get(path);
+
+      // Configure marked to handle blockquotes
+      const renderer = new marked.Renderer();
+
+      renderer.blockquote = (rawQuote) => {
+        // Convert the incoming quote data to a reliable string
+        let quoteText = this.ensureString(rawQuote);
+
+        // By default, the blockquote is 'default' style
+        let type = 'default';
+
+        // Detect and remove prefix
+        const detectAndRemovePrefix = (pattern, newType) => {
+          if (pattern.test(quoteText)) {
+            type = newType;
+            quoteText = quoteText.replace(pattern, ''); // remove that prefix
+          }
+        };
+
+        // Check for each type (case-insensitive)
+        detectAndRemovePrefix(/\*\*Note:\*\*/i, 'note');
+        detectAndRemovePrefix(/<strong>Note:<\/strong>/i, 'note');
+
+        detectAndRemovePrefix(/\*\*Warning:\*\*/i, 'warning');
+        detectAndRemovePrefix(/<strong>Warning:<\/strong>/i, 'warning');
+
+        detectAndRemovePrefix(/\*\*Info:\*\*/i, 'info');
+        detectAndRemovePrefix(/<strong>Info:<\/strong>/i, 'info');
+
+        detectAndRemovePrefix(/\*\*Tip:\*\*/i, 'tip');
+        detectAndRemovePrefix(/<strong>Tip:<\/strong>/i, 'tip');
+
+        // Return the final HTML for the blockquote
+        // .trim() is safe now since quoteText is guaranteed to be a string
+        return `
+          <blockquote class="${type}">
+            ${quoteText.trim()}
+          </blockquote>
+        `;
+      };
+
+      marked.setOptions({
+        renderer,
+        headerIds: true,
+        mangle: false,
+        gfm: true,
+        breaks: true,
+        silent: true,
+      });
+
       const htmlContent = marked.parse(content);
 
+      // Create a temporary container to manipulate links & code blocks
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = htmlContent;
 
-      // Convert .md links
-      tempDiv.querySelectorAll('a').forEach(link => {
+      // Convert .md links to in-page #hash links
+      tempDiv.querySelectorAll('a').forEach((link) => {
         if (link.href.endsWith('.md')) {
           const pageName = link.href.split('/').pop().replace('.md', '');
           link.href = `#${pageName}`;
         }
       });
 
-      // Ensure a language is set for code blocks
-      tempDiv.querySelectorAll('pre code').forEach(block => {
-        const hasLang = Array.from(block.classList).some(c => c.startsWith('language-'));
+      // Ensure a language is set for all code blocks
+      tempDiv.querySelectorAll('pre code').forEach((block) => {
+        const hasLang = Array.from(block.classList).some((c) => c.startsWith('language-'));
         if (!hasLang) {
           block.classList.add('language-plaintext');
         }
       });
 
+      // Update the DOM with the final HTML
       document.getElementById('markdown-content').innerHTML = tempDiv.innerHTML;
       this.currentPage = path;
 
-      // Prism highlight
+      // Re-run syntax highlighting on the updated content
       Prism.highlightAllUnder(document.getElementById('markdown-content'));
 
-      // Build page TOC
-      const headers = document.querySelectorAll('#markdown-content h2');
-      headers.forEach((header) => {
-        const headerId = header.textContent
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '');
-        header.id = headerId;
-      });
+      // Generate the per-page TOC
       this.generatePageToc();
 
-      // Update left TOC
-      document.querySelectorAll('.table-of-contents a').forEach(link => link.classList.remove('active'));
+      // Update active link in the global TOC
+      document.querySelectorAll('.table-of-contents a').forEach((link) => {
+        link.classList.remove('active');
+      });
       const activeLink = document.querySelector(`.table-of-contents a[data-path="${path}"]`);
       if (activeLink) {
         activeLink.classList.add('active');
-
-        const hashParts = window.location.hash.split('#');
-        if (hashParts.length <= 2) {
-          const newHash = path.replace('.md', '');
-          if (window.location.hash !== `#${newHash}`) {
-            history.pushState(null, '', `#${newHash}`);
-          }
-        }
       }
     } catch (error) {
       console.error('Error loading page:', error);
       document.getElementById('markdown-content').innerHTML = '<p>Error loading content.</p>';
     }
   }
-
-  // handleSearch(searchTerm) {
-  //   if (!searchTerm) return;
-  //   const searchText = searchTerm.toLowerCase();
-
-  //   this.pages.forEach(async (content, path) => {
-  //     if (content.toLowerCase().includes(searchText)) {
-  //       console.log(`Found match for "${searchTerm}" in ${path}`);
-  //     }
-  //   });
-  // }
-  // 
-  // // Search functionality is in development. The handleSearch method is currently commented out and will be enabled once the feature is ready.
 }
 
+// Initialize MarkdownBook on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('[DOMContentLoaded] Initializing MarkdownBook');
   new MarkdownBook(MarkdownBookConfig);

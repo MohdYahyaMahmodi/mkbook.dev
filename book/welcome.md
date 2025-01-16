@@ -2,6 +2,17 @@
 
 Welcome to MarkdownBook, a modern documentation platform that makes creating and sharing documentation a breeze. It's lightweight, fast, and easy to use.
 
+> **Note:** This is a note blockquote.
+
+> **Warning:** This is a warning blockquote.
+
+> **Info:** This is an info blockquote.
+
+> **Tip:** This is a tip blockquote.
+
+> Regular Blockquote
+
+
 ![Placeholder Image](/demo/gradiant.png)
 
 ## Getting Started
