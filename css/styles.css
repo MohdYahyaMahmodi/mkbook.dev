@@ -14,16 +14,22 @@
 
   /* Shadows */
   --mb-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /*
   --mb-search-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  Search bar feature is in development. The search shadow variable is currently commented out and will be enabled once the feature is ready.
+  */
 
   /* Colors - Light Theme */
   --mb-primary-color: #d4931b;
   --mb-background-light: #ffffff;
   --mb-text-light: #000000;
   --mb-border-light: #e5e7eb;
+  /*
   --mb-search-bg-light: #f8fafc;
-  --mb-powered-by-light: #e8edf1;
   --mb-search-border-light: #e2e8f0;
+  Search bar feature is in development. The search background and border variables are currently commented out and will be enabled once the feature is ready.
+  */
+  --mb-powered-by-light: #e8edf1;
   --mb-icon-light: #94a3b8;
   --mb-powered-by-light-hover: #3b82f6; /* Changed to primary color for better consistency */
   --mb-powered-by-light-text-hover: #ffffff;
@@ -37,9 +43,12 @@
   --mb-background-dark: #1a1a1aff;
   --mb-text-dark: #ffffff;
   --mb-border-dark: #3a3a3a;
+  /*
   --mb-search-bg-dark: #2d2d2d;
-  --mb-powered-by-dark: #1d1d1d;
   --mb-search-border-dark: #3d3d3d;
+  Search bar feature is in development. The search background and border variables are currently commented out and will be enabled once the feature is ready.
+  */
+  --mb-powered-by-dark: #1d1d1d;
   --mb-icon-dark: #a0aec0;
   --mb-powered-by-dark-hover: #3b82f6; /* Changed to primary color for consistency */
   --mb-powered-by-dark-text-hover: #ffffff;
@@ -55,7 +64,7 @@
 
   /* Light Theme Scrollbar Colors */
   --scrollbar-track-light: transparent;
-  --scrollbar-thumb-light: rgba(255, 8, 8, 0.2);
+  --scrollbar-thumb-light: rgba(0, 0, 0, 0.2);
   --scrollbar-thumb-hover-light: rgba(0, 0, 0, 0.3);
 
   /* Dark Theme Scrollbar Colors */
@@ -270,6 +279,7 @@ html.dark-theme {
 }
 
 /* ===== SEARCH STYLES ===== */
+/*
 .search-container {
   position: relative;
 }
@@ -312,6 +322,9 @@ html.dark-theme {
 .dark-theme .search-icon {
   color: var(--mb-icon-dark);
 }
+
+/* Search bar feature is under development. All search-related styles are currently commented out and will be enabled once the feature is ready.
+*/
 
 /* ===== THEME TOGGLE STYLES ===== */
 .theme-toggle {
@@ -725,6 +738,7 @@ pre[class*="language-"] {
 }
 
 /* ===== MOBILE SEARCH ===== */
+/*
 .mobile-search {
   display: none;
   padding: 1rem;
@@ -737,6 +751,9 @@ pre[class*="language-"] {
   background-color: var(--mb-background-dark);
   border-color: var(--mb-border-dark);
 }
+
+/* Search bar feature is under development. All mobile search-related styles are currently commented out and will be enabled once the feature is ready.
+*/
 
 /* ===== PAGE-SPECIFIC TOC (RIGHT SIDEBAR) ===== */
 /* Already handled above */
@@ -799,6 +816,7 @@ pre[class*="language-"] {
   }
 
   /* Top search hidden, mobile search shown */
+  /*
   .search-container {
     display: none;
   }
@@ -812,6 +830,9 @@ pre[class*="language-"] {
   .mobile-search .search-input {
     width: 100%;
   }
+
+  Search bar feature is under development. The search container and mobile search styles within responsive media queries are currently commented out and will be enabled once the feature is ready.
+  */
 
   /* Navbar + content layout */
   .navbar-wrapper {

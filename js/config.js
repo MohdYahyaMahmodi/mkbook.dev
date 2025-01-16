@@ -1,36 +1,40 @@
 // MarkdownBook Configuration
 const MarkdownBookConfig = {
-  // Branding
-  logo: {
+    // Branding
+    logo: {
       path: 'logo/logo.png',
       altText: 'Documentation Logo',
       useFavicon: true
-  },
-  title: {
+    },
+    title: {
       website: 'Website - Documentation', // Title that appears in browser tab
       navbar: 'MkBook.dev Start Guide' // Title that appears in the navbar
-  },
-  
-  // Search
-  search: {
+    },
+    
+    /*
+    // Search
+    search: {
       placeholder: 'Search docs...',
-      enabled: false
-  },
-
-  // Theme Settings
-  theme: {
+      enabled: true
+    },
+    // Search feature is in development. The search configuration is currently commented out and will be enabled once the feature is ready.
+    */
+  
+    // Theme Settings
+    theme: {
       default: 'light',
       toggleEnabled: true
-  },
-
-  // Content Settings
-  content: {
+    },
+  
+    // Content Settings
+    content: {
       basePath: '/book',
       tocPath: 'book/toc.md',
       defaultPage: 'welcome.md'
+    }
+  };
+  
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = MarkdownBookConfig;
   }
-};
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = MarkdownBookConfig;
-}
+  

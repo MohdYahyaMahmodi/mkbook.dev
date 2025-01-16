@@ -12,7 +12,7 @@
 # [icon:fa:fa solid fa-image] Images
 # Boosting Terms & Conditions
 
-# [icon:fa:fa-solid fa-house] Welcome
+# ️‍🔥 Welcome
 # [icon:img:/demo/custom-image.png] Custom Image
 # [icon:gif:/demo/animated.gif] Animated Icon
 
